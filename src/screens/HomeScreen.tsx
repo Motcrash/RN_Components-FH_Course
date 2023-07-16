@@ -1,42 +1,27 @@
 import React from 'react'
-import { Text } from 'react-native';
 import { View, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons' 
 import { styles } from '../theme/AppTheme';
-
-interface Item {
-    name: string,
-    icon: string,
-    component: string,
-}
-
-const items = [
-    {
-        name: 'animation01',
-        icon: 'cube-outline',
-        component: 'Animatin101Screen'
-    }
-]
+import { FlatListMenuItem } from '../components/FlatListMenuItem';
+import { items } from '../data/Items';
+import { HeaderTitle } from '../components/HeaderTitle';
 
 export const HomeScreen = () => {
 
-    const renderItem = ({ name, icon, }: Item ) => {
+    const renderItemSeparator = () => {
         return(
-            <View>
-                <Text>{ name } - { icon }</Text>
-            </View>
+            <View style = {{ borderBottomWidth: 1, opacity: 0.3, marginVertical: 8}}/> 
         )
     }
 
   return (
-    <View style={{ flex: 1 }}>
-        
-        <Text style={ styles.title }>Options menu</Text>
+    <View style={{ flex: 1, ...styles.globalMargin}}>
 
         <FlatList
             data={ items }
-            renderItem={ ({ item }) => renderItem( item ) }
+            renderItem={ ({ item }) => <FlatListMenuItem item={item}/> }
             keyExtractor={ (item) => item.name }
+            ListHeaderComponent={ () => <HeaderTitle title="Menu options"/> }
+            ItemSeparatorComponent={ () => renderItemSeparator() }
         />
     </View>
   )
