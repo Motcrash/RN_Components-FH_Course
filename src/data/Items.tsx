@@ -21,4 +21,14 @@ export const items: Item[] = [
         icon: 'alert-circle-outline',
         component: 'AlertScreen'
     },
+    {
+        name: 'TextInput',
+        icon: 'document-text-outline',
+        component: 'TextInputScreen'
+    },
+    {
+        name: 'Pull to refresh',
+        icon: 'refresh-circle-outline',
+        component: 'RefreshScreen'
+    },
 ]
