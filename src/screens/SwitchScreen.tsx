@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
-import { Switch } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View } from 'react-native'
 import { HeaderTitle } from '../components/HeaderTitle';
-import { CustomSwitch } from '../components/customSwitch';
+import { CustomSwitch } from '../components/CustomSwitch';
 
 export const SwitchScreen = () => {
 
