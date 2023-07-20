@@ -31,4 +31,9 @@ export const items: Item[] = [
         icon: 'refresh-circle-outline',
         component: 'RefreshScreen'
     },
+    {
+        name: 'Section list',
+        icon: 'list-outline',
+        component: 'SectionListScreen'
+    },
 ]
