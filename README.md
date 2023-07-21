@@ -2,9 +2,9 @@
 
 An app for testing React Native components following the course of Fernando Herrera, this is just a simple project to learn React Native basics
 
-If you want to try the app just download the project and run in the terminal
+If you want to try the app just download the project and follow the next steps
 
-# Getting Started
+# Running the aplication
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
