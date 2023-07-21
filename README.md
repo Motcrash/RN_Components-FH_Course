@@ -1,4 +1,8 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# RN_Components-FH_Course
+
+An app for testing React Native components following the course of Fernando Herrera, this is just a simple project to learn React Native basics
+
+If you want to try the app just download the project and run in the terminal
 
 # Getting Started
 
