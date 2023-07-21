@@ -17,7 +17,7 @@ To start Metro, run the following command from the _root_ of your React Native p
 ```bash
 # On android
 npx react-native run-android
-# Or on IOS
+# On IOS
 npx react-native run-ios
 ```
 
