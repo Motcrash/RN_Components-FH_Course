@@ -23,7 +23,10 @@ export const FlatListMenuItem = ({ item }: Props) => {
                 color="#0ca5b0"
                 size={ 23 }
             /> 
-            <Text style={ styles.itemText }>{ item.name }</Text>
+            <Text style={{...styles.itemText, }}
+            >
+                { item.name }
+            </Text>
             
             <View style={{ flex: 1 }} />
 
