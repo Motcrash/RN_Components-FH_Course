@@ -46,4 +46,9 @@ export const items: Item[] = [
         icon: 'infinite-outline',
         component: 'InfiniteScrollScreen'
     },
+    {
+        name: 'Slides',
+        icon: 'swap-vertical-outline',
+        component: 'SlidesScreen'
+    },
 ]
