@@ -21,7 +21,7 @@ export const Animation101Screen = () => {
           title='Fade in'
           onPress={ () =>{
             fadeIn(), 
-            startMoving( 100);
+            startMoving( 100 );
           }}
         />
 
