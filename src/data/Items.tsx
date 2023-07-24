@@ -51,4 +51,9 @@ export const items: Item[] = [
         icon: 'swap-vertical-outline',
         component: 'SlidesScreen'
     },
+    {
+        name: 'Theme screen',
+        icon: 'contrast-outline',
+        component: 'ChangeThemeScreen'
+    },
 ]
