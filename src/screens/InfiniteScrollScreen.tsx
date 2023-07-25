@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, StyleSheet, Text, View } from 'react-native'
 import { HeaderTitle } from '../components/HeaderTitle'
 import { FadeInImage } from '../components/FadeInImage'
+import { ThemeContext } from '../context/themeContext/ThemeContext'
 
 export const InfiniteScrollScreen = () => {
 
     const [numbers, setNumbers] = useState([0,1,2,3,4,5,])
+    const { theme:{colors}} = useContext( ThemeContext );
      
     const loadMore = () => {
         const array: number[] = [];
@@ -24,10 +26,12 @@ export const InfiniteScrollScreen = () => {
             <FadeInImage 
                 uri={`https://picsum.photos/id/${ item }/728/728`} 
                 style={{ 
-                    width: '95%',
+                    width: '90%',
                     height: 300,
                     borderRadius: 10,   
-                    marginBottom: 10
+                    marginBottom: 25,
+                    borderColor: colors.primary,
+                    borderWidth: 2
                 }}    
             /> 
         )
@@ -55,7 +59,7 @@ export const InfiniteScrollScreen = () => {
                         justifyContent:'center',
                         alignContent:'center',
                     }}>
-                        <ActivityIndicator size={ 25 } color="#5856D6" />
+                        <ActivityIndicator size={ 25 } color={ colors.primary } />
                     </View>
                 )}
             />

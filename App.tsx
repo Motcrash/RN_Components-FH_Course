@@ -1,7 +1,7 @@
 import React from 'react'
-import { DarkTheme, NavigationContainer, Theme } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { StackNav } from './src/navigations/StackNavigation';
+import { ThemeProvider } from './src/context/themeContext/ThemeContext';
 
 // const customTheme: Theme = {
 //   dark: true, 
@@ -18,10 +18,16 @@ import { StackNav } from './src/navigations/StackNavigation';
 
 export const App = () => {
   return (
-    <NavigationContainer
-      // theme={customTheme}
-    >
+    <AppState>
         <StackNav/>
-    </NavigationContainer>
+    </AppState>
+  )
+}
+
+const AppState = ({ children }: any) => {
+  return( 
+    <ThemeProvider>
+      { children }
+    </ThemeProvider>
   )
 }

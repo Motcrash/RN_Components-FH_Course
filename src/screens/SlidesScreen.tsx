@@ -8,6 +8,8 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useAnimation } from '../hooks/useAnimation';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 const { width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
@@ -39,19 +41,14 @@ const items: Slide[] = [
 
 export const SlidesScreen = ({ navigation }: Props) => {
 
+    const { stylesScreen } = stylesFunction();
     const {fadeIn, opacity } = useAnimation();
     const [activeIndex, setActiveIndex] = useState(0);
     const isVisible = useRef(false);
 
     const renderItem = ( item: Slide ) => {
         return (
-            <View style={{
-                flex: 1,
-                backgroundColor: '#f2f2f2',
-                borderRadius: 5,    
-                padding: 40,
-                justifyContent: 'center',
-            }}>
+            <View style={ stylesScreen.itemContainer}>
                 <Image
                 source={item.img}
                 style={{
@@ -61,8 +58,8 @@ export const SlidesScreen = ({ navigation }: Props) => {
                 }}
                 />
 
-                <Text style={ stylesScreen.title}>{item.title}</Text>
-                <Text style={ stylesScreen.subtitle}>{item.desc}</Text>
+                <Text style={ stylesScreen.title }>{item.title}</Text>
+                <Text style={ stylesScreen.subtitle }>{item.desc}</Text>
             </View>
         )
     }
@@ -70,7 +67,7 @@ export const SlidesScreen = ({ navigation }: Props) => {
 
    return (
        <SafeAreaView
-            style={{ flex:1, paddingTop: 50}}
+            style={ stylesScreen.container }
        >
             <Carousel
               data={ items }
@@ -90,7 +87,7 @@ export const SlidesScreen = ({ navigation }: Props) => {
               }}
             />  
 
-            <Animated.View style={{ flexDirection: 'row-reverse', marginHorizontal: 20, opacity}}> 
+            <Animated.View style={{ flexDirection: 'row-reverse', marginHorizontal: 20, opacity,}}> 
                 <TouchableOpacity style={ stylesScreen.nextButton }
                     activeOpacity={ 0.7 }
                     onPress={ () => {
@@ -132,22 +129,42 @@ export const SlidesScreen = ({ navigation }: Props) => {
    )
 }
 
-const stylesScreen = StyleSheet.create({
-    title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: '#876bc5'
-    },
-    subtitle: {
-        fontSize: 15,
-    },
-    nextButton:{
-        flexDirection: 'row',
-        backgroundColor: '#876bc5',
-        width: 120,
-        height: 50,
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center'
+const stylesFunction = () => {
+    const { theme:{colors}} = useContext( ThemeContext );
+
+    const stylesScreen = StyleSheet.create({
+        container: { flex:1, 
+            paddingTop: 50, 
+            backgroundColor: colors.background
+        },
+        itemContainer: {
+            flex: 1,
+            backgroundColor: colors.background,
+            borderRadius: 5,    
+            padding: 40,
+            justifyContent: 'center',
+        },
+        title: {
+            fontSize: 30,
+            fontWeight: 'bold',
+            color: '#876bc5'
+        },
+        subtitle: {
+            fontSize: 15,
+            color: colors.text
+        },
+        nextButton:{
+            flexDirection: 'row',
+            backgroundColor: '#876bc5',
+            width: 120,
+            height: 50,
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
+    });
+
+    return {
+        stylesScreen
     }
-});
+}

@@ -1,9 +1,25 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { HeaderTitle } from '../components/HeaderTitle';
 import { CustomSwitch } from '../components/CustomSwitch';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const SwitchScreen = () => {
+
+  const { theme: { colors }} = useContext(ThemeContext)
+
+  const styles = StyleSheet.create({
+    switchRow:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginVertical: 5
+    },
+    switchText: {
+      color: colors.text,
+      fontSize: 25,
+    }
+});
 
   const [state, setState] = useState({
     isActive: true,
@@ -41,23 +57,10 @@ export const SwitchScreen = () => {
         <CustomSwitch isOn={ isHappy } onChange={ (value) => onChange( value, 'isHappy' )}/> 
       </View>
 
-      <Text style={{ ...styles.switchText, color: 'black'}}>
+      <Text style={{ ...styles.switchText, color: colors.text}}>
         { JSON.stringify(state, null, 5 )}
       </Text>
 
     </View>
   )
 }
-
-
-const styles = StyleSheet.create({
-    switchRow:{
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginVertical: 5
-    },
-    switchText: {
-      fontSize: 25,
-    }
-});

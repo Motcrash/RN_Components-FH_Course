@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SectionList, StyleSheet, Text, View } from 'react-native'
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/AppTheme';
 import { ItemSeparator } from '../components/ItemSeparator';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 interface Publishers {
     publisher: string;
@@ -25,6 +26,9 @@ const publishers: Publishers[] = [
 ];
 
 export const SectionListScreen = () => {
+
+  const { stylesScreen } = stylesFunction();
+
   return (
     <View style={{ ...styles.globalMargin, flex: 1}}>
         <SectionList
@@ -32,12 +36,12 @@ export const SectionListScreen = () => {
             keyExtractor={( item, index ) => item + index }
             stickySectionHeadersEnabled
             showsVerticalScrollIndicator={ false }
-            renderItem={ ({ item }) => <Text>{ item }</Text>}
+            renderItem={({ item }) => <Text style={ stylesScreen.character } >{ item }</Text>}
             
             ListHeaderComponent={() => <HeaderTitle title='Section list'/>}
             
-            renderSectionHeader={({ section }) =>(
-                <View style={{ backgroundColor: '#f2f2f2'}}>
+            renderSectionHeader={({ section }) => (
+                <View style={ stylesScreen.sectionHeader }>
                     <Text style={ stylesScreen.section }>{ section.publisher }</Text>
                 </View>
             )}
@@ -54,16 +58,35 @@ export const SectionListScreen = () => {
   )
 }
 
-const stylesScreen = StyleSheet.create({
+const stylesFunction = () => {
+
+  const { theme:{colors}} = useContext( ThemeContext );
+
+  const stylesScreen = StyleSheet.create({
     section: {
-        color: '#1e8c93',
+        color: colors.primary,
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
+    sectionHeader:{
+      backgroundColor: colors.background
+    },
+    character:{
+      color: colors.text,
+      fontSize: 18,
+      marginBottom: 6
     },
     footer:{
         fontSize: 20,
+        color: colors.primary,
         fontWeight: 'bold',
-        marginVertical: 10
+        marginVertical: 20
     },
+  });
 
-});
+  return {
+    stylesScreen
+  }
+
+}
